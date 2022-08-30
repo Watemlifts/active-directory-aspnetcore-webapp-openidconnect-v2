@@ -21,11 +21,11 @@ namespace WebApp_OpenIDConnect_DotNet.Controllers
         private readonly IGraphApiOperations graphApiOperations;
         private readonly IArmOperations armOperations;
 
-        public HomeController(ITokenAcquisition   tokenAcquisition,
+        public HomeController(ITokenAcquisition tokenAcquisition,
                               IGraphApiOperations graphApiOperations,
                               IArmOperations armOperations)
         {
-            this.tokenAcquisition   = tokenAcquisition;
+            this.tokenAcquisition = tokenAcquisition;
             this.graphApiOperations = graphApiOperations;
             this.armOperations = armOperations;
         }
@@ -35,11 +35,11 @@ namespace WebApp_OpenIDConnect_DotNet.Controllers
             return View();
         }
 
-        [AuthorizeForScopes(Scopes = new[] {Constants.ScopeUserRead})]
+        [AuthorizeForScopes(Scopes = new[] { Constants.ScopeUserRead })]
         public async Task<IActionResult> Profile()
         {
             var accessToken =
-                await tokenAcquisition.GetAccessTokenOnBehalfOfUserAsync(new[] {Constants.ScopeUserRead});
+                await tokenAcquisition.GetAccessTokenOnBehalfOfUserAsync(new[] { Constants.ScopeUserRead });
 
             var me = await graphApiOperations.GetUserInformation(accessToken);
             var photo = await graphApiOperations.GetPhotoAsBase64Async(accessToken);
@@ -69,8 +69,8 @@ namespace WebApp_OpenIDConnect_DotNet.Controllers
         }
 
 
-		
-		[AuthorizeForScopes(Scopes = new[] { "https://storage.azure.com/user_impersonation" })]
+
+        [AuthorizeForScopes(Scopes = new[] { "https://storage.azure.com/user_impersonation" })]
 
         public async Task<IActionResult> Blob()
         {
@@ -96,7 +96,7 @@ namespace WebApp_OpenIDConnect_DotNet.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

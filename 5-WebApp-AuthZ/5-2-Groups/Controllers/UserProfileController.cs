@@ -21,7 +21,7 @@ namespace WebApp_OpenIDConnect_DotNet.Controllers
             this.graphService = MSGraphService;
         }
 
-        [AuthorizeForScopes(Scopes = new[] { Constants.ScopeUserRead, Constants.ScopeDirectoryReadAll })]        
+        [AuthorizeForScopes(Scopes = new[] { Constants.ScopeUserRead, Constants.ScopeDirectoryReadAll })]
         public async Task<IActionResult> Index()
         {
             // Using group ids/names in the IsInRole method
@@ -41,8 +41,8 @@ namespace WebApp_OpenIDConnect_DotNet.Controllers
             {
                 //swallow
             }
-            
-            IList<Group> groups = await graphService.GetMyMemberOfGroupsAsync(accessToken);            
+
+            IList<Group> groups = await graphService.GetMyMemberOfGroupsAsync(accessToken);
             ViewData["Groups"] = groups;
 
             return View();
