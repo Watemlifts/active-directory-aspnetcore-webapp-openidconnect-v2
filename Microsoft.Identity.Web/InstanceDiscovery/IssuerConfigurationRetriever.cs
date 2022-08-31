@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 using System;
@@ -25,10 +25,10 @@ namespace Microsoft.Identity.Web.InstanceDiscovery
         public async Task<IssuerMetadata> GetConfigurationAsync(string address, IDocumentRetriever retriever, CancellationToken cancel)
         {
             if (string.IsNullOrEmpty(address))
-                throw new ArgumentNullException(nameof(address), $"Azure AD Issuer metadata address url is required");
+                throw new ArgumentNullException(nameof(address), "Azure AD Issuer metadata address url is required");
 
             if (retriever == null)
-                throw new ArgumentNullException(nameof(retriever), $"No metadata document retriever is provided");
+                throw new ArgumentNullException(nameof(retriever), "No metadata document retriever is provided");
 
             string doc = await retriever.GetDocumentAsync(address, cancel).ConfigureAwait(false);
             return JsonConvert.DeserializeObject<IssuerMetadata>(doc);
