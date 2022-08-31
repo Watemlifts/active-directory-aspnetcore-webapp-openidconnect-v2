@@ -55,7 +55,7 @@ namespace Microsoft.Identity.Web.TokenCacheProviders.Distributed
 
         protected override async Task WriteCacheBytesAsync(string cacheKey, byte[] bytes)
         {
-            await _distributedCache.SetAsync(cacheKey, bytes, _cacheOptions).ConfigureAwait(false) ;
+            await _distributedCache.SetAsync(cacheKey, bytes, _cacheOptions).ConfigureAwait(false);
         }
     }
 }
